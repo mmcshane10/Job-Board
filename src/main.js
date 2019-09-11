@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 import { JobSearch } from './backend.js';
+import { DadJoke } from './backend.js';
 
 $(document).ready(function() {
   $('#job-search').submit(function(event) {
@@ -12,10 +13,13 @@ $(document).ready(function() {
     let location = $('#location-keyword').val();
     $('#job-keyword').val("");
     $('#location-keyword').val("");
-    $('.populate').text("")
+    $('.populate').text("");
 
     let jobSearch = new JobSearch();
     let promise = jobSearch.getJobPosting(location, keyword);
+    let dadJoke = new DadJoke();
+    let promise2 = dadJoke.getDadJoke();
+    console.log(promise2);
 
     promise.then(function(response) {
       let body = JSON.parse(response);
@@ -41,12 +45,22 @@ $(document).ready(function() {
 
         );
         $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${body[i].location}</p>`);
-        $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`)
+        $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`);
         $(`#description${i}`).html(body[i].description);
       }
-      console.log(body);
     }, function (error) {
       $('#showErrors').text(`There was an error processing your request: ${error.message}`);
     });
+
+
+    promise2.then(function(response) {
+      // const body = JSON.parse(response);
+      $('.dadjokes').html(response)
+      console.log(response);
+    }, function(error) {
+      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+    });
+
+
   });
 });

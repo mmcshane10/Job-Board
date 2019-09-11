@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-import { JobSearch } from './backend';
+import { JobSearch } from './backend.js';
 
 $(document).ready(function() {
   $('#job-search').submit(function(event) {
@@ -18,11 +18,14 @@ $(document).ready(function() {
 
     promise.then(function(response) {
       let body = JSON.parse(response);
-      console.log(body);
-      console.log(body[0]);
-      $('#show ').text(`${body[0]}`);
-      // $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
-    }, function(error) {
+      for (var i = 0; i < body.length; i++) {
+        $(".populate").append(`<div id=logo${i}></div> <div id=title${i}></div>`);
+        // $(`#logo${i}`).html(`<img src=${body[i].company_logo}>`);
+        $(`#logo${i}`).html(body[i].location);
+        console.log(body[i].location);
+        $(`#title${i}`).html(body[i].title);
+      }
+    }, function (error) {
       $('#showErrors').text(`There was an error processing your request: ${error.message}`);
     });
   });

@@ -19,11 +19,22 @@ $(document).ready(function() {
     promise.then(function(response) {
       let body = JSON.parse(response);
       for (var i = 0; i < body.length; i++) {
-        $(".populate").append(`<div id=logo${i}></div> <div id=title${i}></div>`);
+        $(".populate").append(
+          `<div class="card bg-light mb-3">
+            <div class="card-header">
+              <div id=title${i}></div>
+            </div>
+            <div class="card-body">
+              <div id=location${i}></div>
+              <div id=description${i}></div>
+              <div id=url${i}></div>
+            </div>
+          </div>`);
         // $(`#logo${i}`).html(`<img src=${body[i].company_logo}>`);
-        $(`#logo${i}`).html(body[i].location);
-        console.log(body[i].location);
         $(`#title${i}`).html(body[i].title);
+        $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${body[i].location}</p>`);
+        $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`)
+        $(`#description${i}`).html(body[i].description);
       }
     }, function (error) {
       $('#showErrors').text(`There was an error processing your request: ${error.message}`);

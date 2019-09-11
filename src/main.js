@@ -12,6 +12,7 @@ $(document).ready(function() {
     let location = $('#location-keyword').val();
     $('#job-keyword').val("");
     $('#location-keyword').val("");
+    $('.populate').text("")
 
     let jobSearch = new JobSearch();
     let promise = jobSearch.getJobPosting(location, keyword);
@@ -25,6 +26,7 @@ $(document).ready(function() {
               <div id=title${i}></div>
             </div>
             <div class="card-body">
+              <div id=company${i}></div>
               <div id=location${i}></div>
               <div id=description${i}></div>
               <div id=url${i}></div>
@@ -32,10 +34,12 @@ $(document).ready(function() {
           </div>`);
         // $(`#logo${i}`).html(`<img src=${body[i].company_logo}>`);
         $(`#title${i}`).html(body[i].title);
+        $(`#company${i}`).html(`<p><span class='strong'>Company:</span> ${body[i].company}</p>`);
         $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${body[i].location}</p>`);
         $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`)
         $(`#description${i}`).html(body[i].description);
       }
+      console.log(body);
     }, function (error) {
       $('#showErrors').text(`There was an error processing your request: ${error.message}`);
     });

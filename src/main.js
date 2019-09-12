@@ -22,40 +22,49 @@ $(document).ready(function() {
     Promise.all([promise1,promise2]).then(function(response) {
       console.log(response);
       let bodyGH = JSON.parse(response[0]);
-      for (var i = 0; i < bodyGH.length; i++) {
-        $(".populate").append(
+      for (let i = 0; i < bodyGH.length; i++) {
+        $("#ghpopulate").append(
           `<div class="card bg-light mb-3">
-            <div class="card-header">
-              <div id=title${i}></div>
-            </div>
-            <div class="card-bodyGH">
-              <div id=company${i}></div>
-              <div id=location${i}></div>
-              <div id=description${i}></div>
-              <div id=url${i}></div>
-            </div>
+          <div class="card-header">
+          <div id=ghtitle${i}></div>
+          </div>
+          <div class="card-body">
+          <div id=ghcompany${i}></div>
+          <div id=ghlocation${i}></div>
+          <div id=ghdescription${i}></div>
+          <div id=ghurl${i}></div>
+          </div>
           </div>`);
-<<<<<<< HEAD
-        // $(`#logo${i}`).html(`<img src=${body[i].company_logo}>`);
-        $(`#title${i}`).html(body[i].title);
-        $(`#company${i}`).html(`<p><span class='strong'>Company:</span><a href=${body[i].company_url}> ${body[i].company}</a></p>`);
-        $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${body[i].location}</p>`);
-        $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`)
-        $(`#description${i}`).html(body[i].description);
-=======
-        // $(`#logo${i}`).html(`<img src=${bodyGH[i].company_logo}>`);
-        $(`#title${i}`).html(bodyGH[i].title);
-        $(`#company${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyGH[i].company_url}>${bodyGH[i].company}</a></p>`);
-        $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${bodyGH[i].location}</p>`);
-        $(`#url${i}`).html(`<p><span class='strong'><a href=${bodyGH[i].url}>Visit Website</a></span></p>`);
-        $(`#description${i}`).html(bodyGH[i].description);
->>>>>>> promiseAll
-      }
-      let bodyAJ = JSON.parse(response[1]);
-      console.log(bodyGH);
-      console.log(bodyAJ);
-    }, function (error) {
-      $('#showErrors').text(`There was an error processing your request: ${error.message}`);
+          // $(`#logo${i}`).html(`<img src=${bodyGH[i].company_logo}>`);
+          $(`#ghtitle${i}`).html(bodyGH[i].title);
+          $(`#ghcompany${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyGH[i].company_url}>${bodyGH[i].company}</a></p>`);
+          $(`#ghlocation${i}`).html(`<p><span class='strong'>Location:</span> ${bodyGH[i].location}</p>`);
+          $(`#ghurl${i}`).html(`<p><span class='strong'><a href=${bodyGH[i].url}>Visit Website</a></span></p>`);
+          $(`#ghdescription${i}`).html(bodyGH[i].description);
+        }
+        let bodyAJ = JSON.parse(response[1]);
+        for (let i = 0; i < bodyGH.length; i++) {
+          $("#ghpopulate").append(
+            `<div class="card bg-light mb-3">
+            <div class="card-header">
+            <div id=ajtitle${i}></div>
+            </div>
+            <div class="card-body">
+            <div id=ajcompany${i}></div>
+            <div id=ajlocation${i}></div>
+            <div id=ajdescription${i}></div>
+            <div id=ajurl${i}></div>
+            </div>
+            </div>`);
+
+            $(`#ajtitle${i}`).html(bodyAJ.listings.listing[i].title);
+            $(`#ajcompany${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyAJ.listings.listing[i].company.url}>${bodyAJ.listings.listing[i].company.name}</a></p>`);
+            $(`#ajlocation${i}`).html(`<p><span class='strong'>Location:</span> ${bodyAJ.listings.listing[i].company.location.name}</p>`);
+            $(`#ajurl${i}`).html(`<p><span class='strong'><a href=${bodyAJ.listings.listing[i].url}>Visit Website</a></span></p>`);
+            $(`#ajdescription${i}`).html(bodyAJ.listings.listing[i].description);
+          }
+        }, function (error) {
+          $('#showErrors').text(`There was an error processing your request: ${error.message}`);
+        });
+      });
     });
-  });
-});

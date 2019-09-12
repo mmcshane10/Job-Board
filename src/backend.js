@@ -32,6 +32,4 @@ export class JobSearch {
       request2.send();
     });
   }
-
-
 }

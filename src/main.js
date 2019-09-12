@@ -14,6 +14,8 @@ $(document).ready(function() {
     $('#location-keyword').val("");
     $('#ghpopulate').text("");
     $('#ajpopulate').text("");
+    $("#fount").text("");
+
     $('#user-keyword').text(keyword);
     $('#user-location').text(location);
     $('#results').show();
@@ -42,7 +44,6 @@ $(document).ready(function() {
           </div>
           </div>
           </div>`);
-          // $(`#logo${i}`).html(`<img src=${bodyGH[i].company_logo}>`);
           $(`#ghtitle${i}`).html(bodyGH[i].title);
           $(`#ghcompany${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyGH[i].company_url}>${bodyGH[i].company}</a></p>`);
           $(`#ghlocation${i}`).html(`<p><span class='strong'>Location:</span> ${bodyGH[i].location}</p>`);
@@ -76,13 +77,9 @@ $(document).ready(function() {
               $(`#ajdescription${i}`).html(bodyAJ.listings.listing[i].description);
             }
           }
-          console.log(bodyGH)
           $("#fount").text(bodyAJ.listings.total + bodyGH.length)
         }).catch( error=> {
-          // console.log(promise1);
           $('#showErrors').text(`There was an error processing your request: ${error.message}`);
-          // console.log(promise2);
-          console.error(error);
         });
       });
     });

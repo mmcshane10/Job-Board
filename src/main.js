@@ -42,7 +42,7 @@ $(document).ready(function() {
           $(`#ghtitle${i}`).html(bodyGH[i].title);
           $(`#ghcompany${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyGH[i].company_url}>${bodyGH[i].company}</a></p>`);
           $(`#ghlocation${i}`).html(`<p><span class='strong'>Location:</span> ${bodyGH[i].location}</p>`);
-          $(`#ghurl${i}`).html(`<p><span class='strong'><a href=${bodyGH[i].url}>Visit Website</a></span></p>`);
+          $(`#ghurl${i}`).html(`<p><span class='strong'><a href=${bodyGH[i].url}>View Job Posting</a></span></p>`);
           $(`#ghdescription${i}`).html(bodyGH[i].description);
         }
         let bodyAJ = JSON.parse(response[1]);
@@ -68,13 +68,15 @@ $(document).ready(function() {
               $(`#ajtitle${i}`).html(bodyAJ.listings.listing[i].title);
               $(`#ajcompany${i}`).html(`<p><span class='strong'>Company:</span> <a href=${bodyAJ.listings.listing[i].company.url}>${bodyAJ.listings.listing[i].company.name}</a></p>`);
               $(`#ajlocation${i}`).html(`<p><span class='strong'>Location:</span> ${bodyAJ.listings.listing[i].company.location.name}</p>`);
-              $(`#ajurl${i}`).html(`<p><span class='strong'><a href=${bodyAJ.listings.listing[i].url}>Visit Website</a></span></p>`);
+              $(`#ajurl${i}`).html(`<p><span class='strong'><a href=${bodyAJ.listings.listing[i].url}>View Job Posting</a></span></p>`);
               $(`#ajdescription${i}`).html(bodyAJ.listings.listing[i].description);
             }
           }
-        }, function (error) {
+        }).catch( error=> {
+          // console.log(promise1);
           $('#showErrors').text(`There was an error processing your request: ${error.message}`);
-          console.log('#showErrors');
-        });
+          // console.log(promise2);
+          console.error(error);
+        })
       });
     });

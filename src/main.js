@@ -12,7 +12,8 @@ $(document).ready(function() {
     let location = $('#location-keyword').val();
     $('#job-keyword').val("");
     $('#location-keyword').val("");
-    $('.populate').text("");
+    $('#ghpopulate').text("");
+    $('#ajpopulate').text("");
 
     let ghjobSearch = new JobSearch();
     let promise1 = ghjobSearch.getGHJobPosting(location, keyword);
@@ -24,15 +25,17 @@ $(document).ready(function() {
       let bodyGH = JSON.parse(response[0]);
       for (let i = 0; i < bodyGH.length; i++) {
         $("#ghpopulate").append(
-          `<div class="card bg-light mb-3">
-          <div class="card-header">
-          <div id=ghtitle${i}></div>
-          </div>
+          `<div id="accordion">
+          <div class="card bg-light mb-3">
+          <div class="card-header" id="heading${i}" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=ghtitle${i}></div>
+          <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
           <div class="card-body">
           <div id=ghcompany${i}></div>
           <div id=ghlocation${i}></div>
           <div id=ghdescription${i}></div>
           <div id=ghurl${i}></div>
+          </div>
+          </div>
           </div>
           </div>`);
           // $(`#logo${i}`).html(`<img src=${bodyGH[i].company_logo}>`);
@@ -44,7 +47,7 @@ $(document).ready(function() {
         }
         let bodyAJ = JSON.parse(response[1]);
         for (let i = 0; i < bodyGH.length; i++) {
-          $("#ghpopulate").append(
+          $("#ajpopulate").append(
             `<div class="card bg-light mb-3">
             <div class="card-header">
             <div id=ajtitle${i}></div>

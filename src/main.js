@@ -34,6 +34,7 @@ $(document).ready(function() {
           <div id=ghlocation${i}></div>
           <div id=ghdescription${i}></div>
           <div id=ghurl${i}></div>
+          <p class="jobsource">Listed on GitHub Jobs</p>
           </div>
           </div>
           </div>
@@ -57,6 +58,7 @@ $(document).ready(function() {
             <div id=ajlocation${i}></div>
             <div id=ajdescription${i}></div>
             <div id=ajurl${i}></div>
+            <p class="jobsource">Listed on Authentic Jobs</p>
             </div>
             </div>
             </div>

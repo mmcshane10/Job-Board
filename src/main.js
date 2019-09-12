@@ -14,6 +14,10 @@ $(document).ready(function() {
     $('#location-keyword').val("");
     $('#ghpopulate').text("");
     $('#ajpopulate').text("");
+    $('#user-keyword').text(keyword);
+    $('#user-location').text(location);
+    $('#results').show();
+
 
     let ghjobSearch = new JobSearch();
     let promise1 = ghjobSearch.getGHJobPosting(location, keyword);
@@ -47,7 +51,7 @@ $(document).ready(function() {
         }
         let bodyAJ = JSON.parse(response[1]);
         if (bodyAJ.listings.total === 0) {
-          return
+          return;
         } else {
           for (let i = 0; i < bodyGH.length; i++) {
             $("#ajpopulate").append(
@@ -72,11 +76,13 @@ $(document).ready(function() {
               $(`#ajdescription${i}`).html(bodyAJ.listings.listing[i].description);
             }
           }
+          console.log(bodyGH)
+          $("#fount").text(bodyAJ.listings.total + bodyGH.length)
         }).catch( error=> {
           // console.log(promise1);
           $('#showErrors').text(`There was an error processing your request: ${error.message}`);
           // console.log(promise2);
           console.error(error);
-        })
+        });
       });
     });

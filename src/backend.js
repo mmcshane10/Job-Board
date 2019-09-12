@@ -19,8 +19,9 @@ export class JobSearch {
   getAJJobPosting(location,keyword) {
     return new Promise(function(resolve, reject) {
       let request2 = new XMLHttpRequest();
+      console.log(process.env.API_KEY);
+      const url2 = `https://cors-anywhere.herokuapp.com/https://authenticjobs.com/api/?api_key=${process.env.API_KEY}&method=aj.jobs.search&format=json&keyword=${keyword}&location=${location}`;
 
-      const url2 = `https://cors-anywhere.herokuapp.com/https://authenticjobs.com/api/?api_key=1bcc6c127d19dc6021a5f8be3447e8d5&method=aj.jobs.search&format=json&keyword=${keyword}&location=${location}`;
       request2.onload = function() {
         if (this.status === 200) {
           resolve(request2.response);

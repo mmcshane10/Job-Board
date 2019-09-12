@@ -27,8 +27,8 @@ $(document).ready(function() {
         $("#ghpopulate").append(
           `<div id="accordion">
           <div class="card bg-light mb-3">
-          <div class="card-header" id="heading${i}" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=ghtitle${i}></div>
-          <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
+          <div class="card-header" id="ghheading${i}" data-toggle="collapse" data-target="#ghcollapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=ghtitle${i}></div>
+          <div id="ghcollapse${i}" class="collapse show" aria-labelledby="ghheading${i}" data-parent="#accordion">
           <div class="card-body">
           <div id=ghcompany${i}></div>
           <div id=ghlocation${i}></div>
@@ -48,15 +48,17 @@ $(document).ready(function() {
         let bodyAJ = JSON.parse(response[1]);
         for (let i = 0; i < bodyGH.length; i++) {
           $("#ajpopulate").append(
-            `<div class="card bg-light mb-3">
-            <div class="card-header">
-            <div id=ajtitle${i}></div>
-            </div>
+            `<div id="accordion">
+            <div class="card bg-light mb-3">
+            <div class="card-header" id="ajheading${i}" data-toggle="collapse" data-target="#ajcollapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=ajtitle${i}></div>
+            <div id="ajcollapse${i}" class="collapse show" aria-labelledby="ajheading${i}" data-parent="#accordion">
             <div class="card-body">
             <div id=ajcompany${i}></div>
             <div id=ajlocation${i}></div>
             <div id=ajdescription${i}></div>
             <div id=ajurl${i}></div>
+            </div>
+            </div>
             </div>
             </div>`);
 

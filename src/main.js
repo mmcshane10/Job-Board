@@ -34,12 +34,7 @@ $(document).ready(function() {
           </div>`);
         // $(`#logo${i}`).html(`<img src=${body[i].company_logo}>`);
         $(`#title${i}`).html(body[i].title);
-        $(`#company${i}`).html(
-
-          `<p> <span class='strong'>Company:</span> <a href=${body[i].company_url}> ${body[i].company} </a> </p>`
-
-
-        );
+        $(`#company${i}`).html(`<p><span class='strong'>Company:</span><a href=${body[i].company_url}> ${body[i].company}</a></p>`);
         $(`#location${i}`).html(`<p><span class='strong'>Location:</span> ${body[i].location}</p>`);
         $(`#url${i}`).html(`<p><span class='strong'><a href=${body[i].url}>Visit Website</a></span></p>`)
         $(`#description${i}`).html(body[i].description);
